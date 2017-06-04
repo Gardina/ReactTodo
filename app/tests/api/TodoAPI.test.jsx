@@ -63,7 +63,7 @@ describe('todoAPI', () => {
       completed: false
     }, {
       id: 3,
-      text: 'some new text',
+      text: 'new text',
       completed: true
     }
   ];
@@ -76,6 +76,21 @@ describe('todoAPI', () => {
   it('should return only uncompeted items if showCompleted is false', () => {
     let filteredTodos = TodoAPI.filterTodos(todos, false, '');
     expect(filteredTodos.length).toBe(1);
+  });
+
+  it('should sort by completed status', () => {
+    let filteredTodos = TodoAPI.filterTodos(todos, true, '');
+    expect(filteredTodos[0].completed).toBe(false);
+  });
+
+  it('should filter todos by searchText', () => {
+    let filteredTodos = TodoAPI.filterTodos(todos, true, 'Some');
+    expect(filteredTodos.length).toBe(2);
+  });
+
+  it('should return all todos if searchText is empty', () => {
+    let filteredTodos = TodoAPI.filterTodos(todos, true, '');
+    expect(filteredTodos.length).toBe(3);
   });
 
   });
