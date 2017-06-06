@@ -1,6 +1,6 @@
-const expect = require('expect');
+import expect from 'expect';
 
-const actions = require('actions');
+import  * as actions from 'actions';
 
 describe('actions', () => {
   it('should generate search text action', () => {
@@ -20,6 +20,23 @@ describe('actions', () => {
     };
     let res = actions.addTodo(action.text);
 
+    expect(res).toEqual(action);
+  });
+
+  it('should generate add todos action object', () => {
+    let todos = [{
+      id: '111',
+      text: 'some text',
+      completed: false,
+      completedAt: undefined,
+      createdAt: 33333333
+    }];
+    let action = {
+      type: 'ADD_TODOS',
+      todos
+    }
+
+    let res = actions.addTodos(todos);
     expect(res).toEqual(action);
   });
 
