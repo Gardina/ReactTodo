@@ -5,6 +5,7 @@ var expect = require('expect');
 var $ = require('jquery');
 
 var {AddTodo} = require('AddTodo');
+import * as actions from 'actions';
 
 describe('AddTodo', () => {
   it('should exist', () => {
@@ -13,10 +14,7 @@ describe('AddTodo', () => {
 
   it('should dispatch addTodo when valid todo text', () => {
     var todoText = 'Check mail';
-    let action = {
-      type: 'ADD_TODO',
-      text: todoText
-    }
+    let action = actions.startAddTodo(todoText);
     var spy = expect.createSpy();
     var addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy}/>);
     var $el = $(ReactDOM.findDOMNode(addTodo));
@@ -27,7 +25,7 @@ describe('AddTodo', () => {
     expect(spy).toHaveBeenCalledWith(action);
   });
 
-  it('should not dispatch addTodo when invalid todo text', () => {
+  it('should not dispatch ADD_TODO when invalid todo text', () => {
     var todoText = '';
     var spy = expect.createSpy();
     var addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy}/>);
