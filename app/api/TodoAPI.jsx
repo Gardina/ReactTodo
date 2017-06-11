@@ -8,16 +8,6 @@ module.exports = {
     }
   },
 
-  getTodos: function() {
-    let stringTodos = localStorage.getItem('todos');
-    let todos = [];
-    try {
-      todos = JSON.parse(stringTodos);
-    } catch(e) {}
-
-    return $.isArray(todos) ? todos : [];
-  },
-
   filterTodos: function(todos, showCompleted, searchText) {
     let filteredTodos = todos;
 
