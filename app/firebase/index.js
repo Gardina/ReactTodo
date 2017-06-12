@@ -14,6 +14,6 @@ import firebase from 'firebase';
   } catch (e) {
 
   }
-
+export const githubProvider = new firebase.auth.GithubAuthProvider(); 
 export const firebaseRef = firebase.database().ref();
 export default firebase;
